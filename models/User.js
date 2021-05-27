@@ -6,6 +6,13 @@ const userSchema = new Schema ({
   firstName: String,
   lastName: String,
   photoURL: String,
+  email: String,
 })
 
-mongoose.model('users', userSchema) 
+//ajout d'une méthode hello
+userSchema.methods.greeting = function () {
+  console.log(`Hi ${this.pseudo}`)
+}
+
+const User = mongoose.model('User', userSchema) 
+module.exports = User

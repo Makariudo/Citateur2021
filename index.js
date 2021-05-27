@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const cookieSession = require('cookie-session')
+const passport = require('passport')
 const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 require('./models/User');
 require('./models/Citation');
+require('./config/passport');
 const router = require("./routes");
 
 const corsOptions = {
@@ -13,6 +16,15 @@ const corsOptions = {
 
 const app = express();
 
+app.use(
+  cookieSession({
+    maxAge: 30*24*60*60*1000, //(30j de durée max)
+    keys: [process.env.COOKIE_KEY]  //clé secret dans la config
+  })
+)
+
+app.use(passport.initialize());
+app.use(passport.session())  // lui dit qu'il peut utiliser les cookies session
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -27,10 +39,6 @@ mongoose.connect(process.env.MONGO_URI, {
 
 
 app.use(router);
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve('../client')+'/build/index.html');
-});
 
 
 const PORT = process.env.PORT || 5000;
