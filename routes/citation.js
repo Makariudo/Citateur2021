@@ -6,4 +6,6 @@ router.get('/', (req,res) => {
   res.send("index de citation router")
 })
 
+ router.get('api')
+
 module.exports = router
