@@ -3,7 +3,23 @@ const Citation = mongoose.model('Citation');
 const User = mongoose.model('User');
 
 const citationsController = {
+  
+  async getCitation(req , res ,next){
+    const { id } = req.params
+    const user = await User.findOne({googleId : req.user.googleId});
+    const {citations} = user;
+    let response = [];
+    for(let quote of citations){
+      let addQuote = await Citation.findById(quote).exec();
+      response = [...response, addQuote];
+    }
+  if(response.length >= 1) {
+    res.send({data : response}) 
+  } else {
+    res.send("No quotes is here !")
+  }
 
+  },
   async createCitation(req , res ,next){
     console.log("create citation, reqBody :", req.body)
     if(!req.body.citation && !req.body.author){
