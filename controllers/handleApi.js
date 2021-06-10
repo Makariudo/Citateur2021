@@ -1,10 +1,8 @@
-const API = require('../services/dicolinkApi')
+const API = require('../services/scrappingDico')
 
 const apiController = {
-  
   async getCitation(req , res ,next){
-    console.log('getcitation');
-    let citation=  await API.findWord()
+    let citation=  await API.getCitation()
     res.send(citation)
   }
 }
