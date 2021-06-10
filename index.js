@@ -30,13 +30,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve('../client/build')));
 
+
 mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 }, (err) => {
  err ?  console.log("Connexion MongoDb PB!", err):  console.log("Connexion MongoDb ok!")
 })
-
+mongoose.set('useFindAndModify', false);
 
 app.use(router);
 

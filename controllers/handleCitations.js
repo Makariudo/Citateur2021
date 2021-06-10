@@ -21,7 +21,6 @@ const citationsController = {
 
   },
   async createCitation(req , res ,next){
-    console.log("create citation, reqBody :", req.body)
     if(!req.body.citation && !req.body.author){
       throw error("bad entry !")
     } else {
@@ -41,12 +40,25 @@ const citationsController = {
   },
 
   async deleteCitation(req , res ,next){
-    console.log("delete citation, reqBody :", req.params)
     const { id } = req.params
     const user = await User.findOne({googleId : req.user.googleId});
     try {
       const newCitations = await user.deleteCitation(id)
       res.send(newCitations)
+    } catch(err) {
+      console.log(err)
+    }
+  },
+  async updateCitation(req , res ,next){
+    const { id } = req.params
+    const updateQuery = req.body
+    try {
+      const newCitation = await Citation.findByIdAndUpdate(id, updateQuery,(err, res) => {
+        if(res){
+          res.save()
+        }
+      })
+      res.send(newCitation)
     } catch(err) {
       console.log(err)
     }
