@@ -1,4 +1,5 @@
 const express = require('express')
+const citationController = require("../controllers/handleCitations")
 
 const router = express.Router();
 
@@ -6,6 +7,6 @@ router.get('/', (req,res) => {
   res.send("index de citation router")
 })
 
- router.get('api')
+router.post('/', citationController.createCitation)
 
 module.exports = router

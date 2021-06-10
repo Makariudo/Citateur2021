@@ -30,7 +30,6 @@ passport.use(new GoogleStrategy({
     User.findOne({ googleId : profile.id }).then(existingUser => {
       if(existingUser){
         console.log("user already registred")
-
         done(null, existingUser)
       } else {
       console.log("new user!")
