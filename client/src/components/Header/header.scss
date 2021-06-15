@@ -19,8 +19,14 @@ header {
 }
 
 .header__h2 {
-  margin-right: 10*$gutter;
+  vertical-align:text-bottom;
   position: relative;
+  &.sign{
+    margin-right: 10*$gutter;
+  }
+  &.logo{
+    margin-left: 10*$gutter;
+  }
 }
 
 .header__link {
@@ -44,12 +50,15 @@ header {
 }
 
 @media screen and (max-width: 640px) {
-  .header__h1 {
-    font-size: 1.8em;
-    margin-left: 0;
-  }
   .header__h2 {
-    font-size: 1.2em;
-    margin-right: 0;
+    font-size: 1em;
+    vertical-align:text-bottom;
+    position: relative;
+    &.sign{
+      margin-right: 0;
+    }
+    &.logo{
+      margin-left: 0;
+    }
   }
 }

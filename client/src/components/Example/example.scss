@@ -1,0 +1,70 @@
+@import 'style/vars';
+
+
+.container__citation__h1 {
+  color: $white;
+  font-size: 1.5em;
+  text-align: center;
+  padding-bottom: $gutter;
+
+}
+
+.container__citation__article {
+  position: relative;
+  margin: auto; 
+  color: $white;
+  padding-top: 5*$gutter;
+  padding-bottom: 2*$gutter;
+  width: clamp(320px,600px, 80vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #1f1f1f;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 29px;
+
+}
+
+.citation__author {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: $gutter;
+}
+
+.citation__author__img {
+  width: 40px;
+}
+.citation__author__name {
+  font-weight: bolder;
+  padding-right: 2*$gutter;
+}
+
+
+.citation__text {
+  width: 80%;
+  text-align: center;
+  font-family: Merriweather;
+  font-weight: bolder;
+  line-height: 1.3rem;
+  color: $white;
+}
+
+.quotes__start {
+  position: absolute;
+  left: -25px;
+  top: -25px;
+  width: 15%;
+}
+
+.quotes__end {
+  position: absolute;
+  right: -25px;
+  bottom: -25px;
+  width: 15%;
+}
+
+
+

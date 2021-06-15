@@ -1,8 +1,8 @@
 @import 'style/vars';
 
 .searchBar {
-  margin: auto; 
-  width: clamp(320px,600px, 80vw);
+  margin: 10*$gutter auto; 
+  width: clamp(320px,450px, 80vw);
   
 }
 
@@ -20,8 +20,7 @@
   justify-content: center;
   align-items: center;
   padding: $gutter;
-  background: rgb(224,207,171);
-  background: linear-gradient(106deg, rgba(224,207,171,1) 0%, rgba(193,159,88,1) 49%, rgba(193,159,88,1) 100%);
+  background: $primary;
   border-radius: 3rem;
 
 }
@@ -33,7 +32,7 @@
   border: none;
   color: $white;
  &::placeholder {
-   color: $black;
+   color: $white;
  }  
 }
 

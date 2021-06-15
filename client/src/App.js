@@ -1,17 +1,20 @@
-import {createContext} from 'react'
+import {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import store from "./store"
+import { StoreProvider } from "./store"
+import Api from 'utils/fetch'
 import Home from "./components/Home/index."
 import DashBoard from './components/Dashboard/Dashboard'
 import Header from './components/Header'
 import './App.scss';
 
-const Store = createContext(store);
-
 function App() {
+ 
+  useEffect(() => {
+    Api.fetchCitations()
+ },[])
 
   return (
-    <Store.Provider value={store}>
+    <StoreProvider>
       <main>
       <Router>
         <Header/>
@@ -23,7 +26,7 @@ function App() {
       </Switch>
     </Router>
     </main>
-    </Store.Provider>
+    </StoreProvider>
     
   );
 }
