@@ -1,0 +1,56 @@
+@import 'style/vars';
+
+.searchBar {
+  margin: auto; 
+  width: clamp(320px,600px, 80vw);
+  
+}
+
+.searchBar__title {
+  color: $white;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+
+.searchBar__inputBlock {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: $gutter;
+  background: rgb(224,207,171);
+  background: linear-gradient(106deg, rgba(224,207,171,1) 0%, rgba(193,159,88,1) 49%, rgba(193,159,88,1) 100%);
+  border-radius: 3rem;
+
+}
+
+
+.searchBar__input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: $white;
+ &::placeholder {
+   color: $black;
+ }  
+}
+
+
+.loupe {
+  margin: -1*$gutter;
+  width: 15%;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 640px) {
+    .searchBar {
+      font-size: 0.5em;
+    }
+    .searchBar__input {
+      font-size: 1em;
+    }
+}

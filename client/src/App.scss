@@ -1,0 +1,25 @@
+@import './style/vars';
+
+body {
+
+  background-image: url('assets/nordwood-themes-R53t-Tg6J4c-unsplash.png');
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+  background-color: $black;
+}
+
+main {
+  display: block;
+  margin: 0px auto;
+  width: clamp(320px,1440px,100vw);
+  //background-color: aqua;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  //background: pink;
+}

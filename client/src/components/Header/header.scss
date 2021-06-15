@@ -1,0 +1,55 @@
+@import 'style/vars';
+
+header {
+  margin-top: $gutter;
+  padding: 0;
+  color: $white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 7vh;
+  //border-bottom: solid $primary 0.5px;
+}
+
+
+
+.header__h1 {
+  margin-left: 10*$gutter;
+}
+
+.header__h2 {
+  margin-right: 10*$gutter;
+  position: relative;
+}
+
+.header__link {
+  
+}
+
+.header__link::after {
+  content: '';
+  position: relative;
+  display: block;
+  transform: scaleX(0);
+  height: 2px;
+  top: 7px;
+  background: $primary;
+  transition: transform .3s ease-in-out;
+}
+
+.header__link:hover::after {
+  cursor: pointer;
+  transform: scaleX(1);
+}
+
+@media screen and (max-width: 640px) {
+  .header__h1 {
+    font-size: 1.8em;
+    margin-left: 0;
+  }
+  .header__h2 {
+    font-size: 1.2em;
+    margin-right: 0;
+  }
+}

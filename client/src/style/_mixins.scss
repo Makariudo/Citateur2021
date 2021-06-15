@@ -1,0 +1,60 @@
+/* -- mixins -- */
+@use './vars';
+
+
+@mixin formulaire-container() { // Si aucune valeur n'est précisée alors $margin vaut 10px
+  padding: vars.$gutter;
+  margin: vars.$gutter;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  
+}
+
+
+@mixin formulaire-button() { // Si aucune valeur n'est précisée alors $margin vaut 10px
+  appearance:none;
+  margin-top:20px;
+  padding: 15px;
+  font-size: 18px;
+  border:none;
+  background-color:vars.$primary;
+  color:vars.$white;
+  font-weight:600;
+  border-radius:5px;
+  font-family: 'Nunito', sans-serif;
+}
+
+@mixin formulaire-input() {
+  padding: vars.$gutter;
+  margin: vars.$gutter*0.5;
+  border: 0;
+  border-bottom: 1px solid vars.$primary-light1;
+  font-size: 18px;
+  color: vars.$grey4;
+  font-family: 'Nunito', sans-serif;
+}
+
+// Mixin formulaire recherche 
+
+@mixin formulaire-search-container() { // Si aucune valeur n'est précisée alors $margin vaut 10px
+  padding: vars.$gutter/2;
+  margin: vars.$gutter/2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  
+}
+
+@mixin formulaire-search-input() {
+  padding: vars.$gutter;
+  border: 0;
+  border-bottom: 1px solid vars.$primary-light1;
+  font-size: 14px;
+  color: vars.$grey;
+  font-family: 'Nunito', sans-serif;
+}
+
+
