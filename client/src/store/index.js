@@ -18,7 +18,6 @@ export const storeInit = {
 const Store = createContext(storeInit);
 
 
-
 export const StoreProvider = (props) => {
   const setProfile = (profile) => {
     setState({...state, profile: profile})
