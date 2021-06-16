@@ -1,4 +1,4 @@
-import {useEffect, useContext, useCallback} from 'react';
+import {useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Auth from "store/auth"
 import Api from 'utils/fetch'
@@ -17,7 +17,7 @@ function App() {
         setProfile(user)
       }
     })();
-  },[])
+  },[setProfile])
 
 
   return (
