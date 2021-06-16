@@ -9,7 +9,20 @@ const Api = {
     }
     try{
       const citation = await axios(config)
-    console.log(citation)
+      return citation.data
+    } catch(err) {
+      console.log(err)
+    }
+    
+  },
+  currentUser : async () => {
+    const config = {
+      method: 'get',
+      url: `${URL}auth/current_user`
+    }
+    try{
+    const user = await axios(config)
+    return user.data;
     } catch(err) {
       console.log(err)
     }
