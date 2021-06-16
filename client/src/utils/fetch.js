@@ -23,7 +23,7 @@ const Api = {
     }
     try{
     const user = await axios(config)
-    console.log("user", user)
+    return user.data;
     } catch(err) {
       console.log(err)
     }

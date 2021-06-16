@@ -1,32 +1,43 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useMemo } from 'react'
 import Api from 'utils/fetch'
 
 export let storeInit = {
+  isConnected: false,
   profile : {
-    isConnected: false,
     mail:'',
     avatar:'',
     firstName:'',
     lastName:'',
-    notes : ['nothing!'],
+    citations : ['nothing!'],
   },
   isLoading: false,
   citations: ['nothing!'],
+  
 
   setCitations: () => {},
   setProfile: () => {},
   setNotes: () => {},
   toggleLoading: () => {},
+  setIsLogout: () => {},
+  setIsConnected: () => {},
 };
 
-const Store = createContext(storeInit);
+const Store = createContext();
 
 
 
 export const StoreProvider = (props) => {
   const setProfile = (profile) => {
-    setState({...state, profile: profile})
+    setState({...state, profile: profile, isConnected: true})
   };
+
+  const setIsConnected = () => {
+    setState({...state, isConnected: true})
+  }
+
+  const setIsLogout = () => {
+    setState({...state, isConnected: false})
+  }
  
   const toggleLoading = () => {
     setState({...state, isLoading: !state.isLoading})
@@ -41,27 +52,16 @@ export const StoreProvider = (props) => {
     setState({...state, notes: notes})
   };
 
-  const fetchProfile = async () => {
-    try {
-      const user = await Api.currentUser()
-      console.log("current user vaut", user.data)
-      if(user.data){
-        setState({...state, profile: user.data})
-      }
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  const initState = () => {
-    fetchProfile()
-    return {...storeInit, setProfile, setCitations, setNotes, toggleLoading }
-  }
+  const initState = {...storeInit, setProfile, setCitations, setNotes, toggleLoading, setIsConnected, setIsLogout }
+  
 
   const [state, setState] = useState(initState);
- 
+
+  const value = useMemo(() => state, [state] )
+
+  console.log("state : ", value)
   return(
-    <Store.Provider value={state}>
+    <Store.Provider value={value}>
       {props.children}
     </Store.Provider>
   )

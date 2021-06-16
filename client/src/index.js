@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {StoreProvider} from "./store"
+import {CitationsProvider} from "store/citations";
+import {AuthProvider} from "store/auth"
+
 
 import 'style/index.scss';
 import App from './App';
@@ -8,9 +10,11 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreProvider>
-      <App />
-    </StoreProvider>
+    <AuthProvider>
+      <CitationsProvider>
+        <App />
+      </CitationsProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,13 +1,12 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom'
-import Store from 'store'
+import Auth from 'store/auth'
 import {URL} from 'utils/constantes'
 import './header.scss';
 
 function Header() {
-  const { profile } = useContext(Store)
-  console.log("profule via header", profile)
-  const {isConnected, avatar, firstName} = profile
+  const { isConnected } = useContext(Auth)
+  
   return (
     <header>
       <h2 className="header__h2 logo"><Link className="header__link" to="/">Citateur</Link></h2>

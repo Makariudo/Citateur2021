@@ -1,6 +1,6 @@
 import {useEffect, useContext, useCallback} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Store from "./store"
+import Auth from "store/auth"
 import Api from 'utils/fetch'
 import Home from "./components/Home/index."
 import DashBoard from './components/Dashboard/Dashboard'
@@ -8,21 +8,16 @@ import Header from './components/Header'
 import './App.scss';
 
 function App() {
-  
-const {setCitations, toggleLoading} = useContext(Store);
+ const {setProfile} = useContext(Auth);
 
- const fetchCitation = useCallback(async() => {
-    const citation = await Api.fetchCitations();
-    toggleLoading();
-    console.log(citation);
-    setCitations([citation])
- })
-
- useEffect(()=>{
-   fetchCitation();
- },[])
-
-
+  useEffect(() => {
+    (async () => {
+    const user = await Api.currentUser();
+      if(user){
+        setProfile(user)
+      }
+    })();
+  },[])
 
 
   return (
