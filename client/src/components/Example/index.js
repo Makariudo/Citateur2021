@@ -8,9 +8,9 @@ import quoteEnd from 'assets/fermantes_shadow_white.svg';
 
 
 function Example() {
-const {citation, isLoading} = useContext(Store);
-console.log(citation, isLoading)
-
+const {citations, isLoading} = useContext(Store);
+console.log(citations[0], isLoading)
+let citation = citations[0];
   return (
 
       <div className="container__citation">
@@ -22,8 +22,8 @@ console.log(citation, isLoading)
           : (<>
               <p className="citation__text">{citation.citation}</p>
               <div className="citation__author">
-                <p className="citation__author__name">{citation.author}</p>
-                <img className="citation__author__img"src={citation.authorImg} alt="auhor" />
+                <p className="citation__author__name">{citation.auteur}</p>
+                <img className="citation__author__img"src={citation.image} alt="auhor" />
               </div>
               <img src={quoteEnd} className="quotes__end" />
             </>)

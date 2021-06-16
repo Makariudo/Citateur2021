@@ -1,8 +1,9 @@
 import React, { useState, createContext } from 'react'
+import Api from 'utils/fetch'
 
-export const storeInit = {
+export let storeInit = {
   profile : {
-    connected: false,
+    isConnected: false,
     mail:'',
     avatar:'',
     firstName:'',
@@ -11,16 +12,9 @@ export const storeInit = {
   },
   isLoading: false,
   citations: ['nothing!'],
-  citation: {
-    citation: "nothing here",
-    author: "wait",
-    authorImg: "for", 
-  },
-  number: 1,
-  setNumber: () => {},
-  setCitation: () => {},
-  setProfile: () => {},
+
   setCitations: () => {},
+  setProfile: () => {},
   setNotes: () => {},
   toggleLoading: () => {},
 };
@@ -33,9 +27,7 @@ export const StoreProvider = (props) => {
   const setProfile = (profile) => {
     setState({...state, profile: profile})
   };
-  const setNumber = (num) => {
-    setState({...state, number: num})
-  };
+ 
   const toggleLoading = () => {
     setState({...state, isLoading: !state.isLoading})
   };
@@ -44,14 +36,28 @@ export const StoreProvider = (props) => {
     setState({...state, citations : [...citations]})
   };
 
-  const setCitation = (citation) => {
-    setState({...state, citation})
-  };
+  
   const setNotes = (notes) => {
     setState({...state, notes: notes})
   };
 
-  const initState = {...storeInit, setProfile, setCitations, setNotes, toggleLoading, setCitation, setNumber }
+  const fetchProfile = async () => {
+    try {
+      const user = await Api.currentUser()
+      console.log("current user vaut", user.data)
+      if(user.data){
+        setState({...state, profile: user.data})
+      }
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  const initState = () => {
+    fetchProfile()
+    return {...storeInit, setProfile, setCitations, setNotes, toggleLoading }
+  }
+
   const [state, setState] = useState(initState);
  
   return(

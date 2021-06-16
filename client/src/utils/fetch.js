@@ -18,11 +18,12 @@ const Api = {
   currentUser : async () => {
     const config = {
       method: 'get',
-      url: `${URL}auth/current_user`
+      url: `${URL}auth/current_user`,
+      withCredentials: true,
     }
     try{
     const user = await axios(config)
-    return user.data;
+    console.log("user", user)
     } catch(err) {
       console.log(err)
     }

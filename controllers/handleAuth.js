@@ -19,8 +19,11 @@ const authController = {
 
   async currentUser(req , res ,next){
     console.log("user", req.user)
-    res.send(req.user)    
-    next()
+    if(req.user){
+      res.send(req.user)
+    } else {
+      res.send(false)
+    }     
   },
   async logOut(req , res ,next){
     req.logout();
