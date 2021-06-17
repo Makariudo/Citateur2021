@@ -20,7 +20,8 @@
   justify-content: center;
   align-items: center;
   padding: $gutter;
-  background: $primary;
+  background: rgb(49,49,49);
+  background: linear-gradient(0deg, rgba(49,49,49,1) 0%, rgba(168,139,79,1) 10%, rgba(193,159,88,1) 15%, rgba(193,159,88,1) 49%, rgba(193,159,88,1) 85%, rgba(168,139,79,1) 90%, rgba(49,49,49,1) 100%);
   border-radius: 3rem;
 
 }
@@ -31,11 +32,16 @@
   background: transparent;
   border: none;
   color: $white;
+  font-size: 2em;
+  padding-left: 2*$gutter;
+
  &::placeholder {
    color: $white;
- }  
+   font-size: 0.45em;
+   padding-bottom: $gutter;
 }
-
+}
+ 
 
 .loupe {
   margin: -1*$gutter;
@@ -45,6 +51,92 @@
   }
 }
 
+.loupe_try{
+  background: $grey;
+  width: 11%;
+  height: 90%;
+  border-radius: 50%;
+  position: absolute;
+  right: 1%;
+  z-index: 3000;
+  background: url(../../assets/loupe_blanche_manche.svg), -webkit-radial-gradient(center, #989898, #616161);
+  background: url(../../assets/loupe_blanche_manche.svg), -moz-radial-gradient(center, #989898, #616161);
+  background: url(../../assets/loupe_blanche_manche.svg), radial-gradient(ellipse at center, #989898, #616161);
+  background-size: 75%, 100%;
+  background-position: 60% 50%, center;
+  background-repeat: no-repeat;
+  -webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.56);
+  -moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.56);
+  box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.56);
+  transition: box-shadow 0.5s ease-in-out;
+
+  &:hover{
+    cursor: pointer;
+    background: url(../../assets/loupe_blanche_manche_hover.svg), -webkit-radial-gradient(center, #989898, #515151);
+    background: url(../../assets/loupe_blanche_manche_hover.svg), -moz-radial-gradient(center, #989898, #515151);
+    background: url(../../assets/loupe_blanche_manche_hover.svg), radial-gradient(ellipse at center, #989898, #515151);
+    background-size: 75%, 100%;
+    background-position: 60% 50%, center;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.56);
+    -moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.56);
+    box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.56);
+  }
+  &:active{
+    background: url(../../assets/loupe_blanche_active.svg), -webkit-radial-gradient(center, #FCFCFC, #989898);
+    background: url(../../assets/loupe_blanche_active.svg), -moz-radial-gradient(center, #FCFCFC, #989898);
+    background: url(../../assets/loupe_blanche_active.svg), radial-gradient(ellipse at center, #FCFCFC, #989898);
+    background-size: 75%, 100%;
+    background-position: 60% 50%, center;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: inset 10px 10px 26px -5px rgba(0,0,0,0.56);
+    -moz-box-shadow: inset 10px 10px 26px -5px rgba(0,0,0,0.56);
+    box-shadow: inset 10px 10px 26px -5px rgba(0,0,0,0.56);
+  }
+} 
+
+.searchBar__notif{
+  display: block;
+  color: $white;
+  padding-top: $gutter;
+  text-align: center;
+  animation: coming 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+  .hidden{
+  animation: gone 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  }
+
+/* ANNIMATION*/
+
+@keyframes coming {
+  0% {
+    opacity: 0.1;
+    filter: blur(2px);
+
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes gone {
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+
+  }
+  100% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* MEDIA QUERIES*/ 
 @media screen and (max-width: 640px) {
     .searchBar {
       font-size: 0.5em;

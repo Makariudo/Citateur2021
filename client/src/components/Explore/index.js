@@ -7,6 +7,7 @@ import './explore.scss'
 function Explore() {
 const {citations} = useContext(CitationsContext);
 const scrollingElem = useRef();
+
 const handleWheel= (e) => {
   let spaceMove = 100;
   spaceMove = (e.deltaY <0) ? -spaceMove : spaceMove;
@@ -18,7 +19,7 @@ const handleWheel= (e) => {
       <Search />
       <h1 className="explore__h1">EXPLOre Theme à voir props</h1>
       <div className="explore__bloc__citations" onWheel={handleWheel} ref={scrollingElem}>
-        {citations && citations.map(item => (<Citation citation={item} key={item.auteur}/>))}
+        {citations && citations.map(item => (<Citation citation={item} key={item.auteur}/> || citations.error))}
       </div>
     </div>
   )

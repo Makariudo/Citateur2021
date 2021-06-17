@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CitationsProvider} from "store/citations";
 import {AuthProvider} from "store/auth"
+import {UIProvider} from 'store/ui'
 
 
 import 'style/index.scss';
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <CitationsProvider>
-        <App />
+        <UIProvider>
+         <App /> 
+        </UIProvider>
       </CitationsProvider>
     </AuthProvider>
   </React.StrictMode>,
