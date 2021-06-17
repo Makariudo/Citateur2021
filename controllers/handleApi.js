@@ -8,8 +8,15 @@ const apiController = {
   },
   async getCitationWithWord(req, res, next){
     const { word } = req.params
+    try{
     const citations=  await APIdicolink.findCitation(word);
-    res.send(citations)
+    console.log(citations) 
+    res.send(citations.data)
+    } catch(err) {
+      console.log(err)
+    }
+    
+   
   }
 }
 

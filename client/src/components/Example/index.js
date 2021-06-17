@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useCallback} from 'react';
 import Citations from 'store/citations';
 import Api from 'utils/fetch';
+import Citation from 'components/Citation'
 import './example.scss';
-import quoteStart from 'assets/ouvrantes_shadow_white.svg';
-import quoteEnd from 'assets/fermantes_shadow_white.svg';
+
 
 
 function Example() {
@@ -27,15 +27,7 @@ let citation = citations[0];
 
       <div className="container__citation">
         <h1 className="container__citation__h1">Citation du jour</h1>
-        <article className="container__citation__article">
-          <img src={quoteStart} className="quotes__start" alt="quote"/>
-              <p className="citation__text">{citation.citation}</p>
-              <div className="citation__author">
-                <p className="citation__author__name">{citation.auteur}</p>
-                <img className="citation__author__img"src={citation.image} alt="auhor" />
-              </div>
-              <img src={quoteEnd} className="quotes__end" alt="quote"/>   
-        </article>
+        <Citation citation={citation} />
       </div>
       
        

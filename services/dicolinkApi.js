@@ -7,7 +7,10 @@ async findCitation(word) {
     console.log("mot found", word)
     const config = {
       method: "get",
-      url: `https://api.dicolink.com/v1/mot/${word}/citations?limite=5&api_key=EAX0bR2KdabAnaoTNRxGQCMUk8NwCFod`
+      url: `https://api.dicolink.com/v1/mot/${word}/citations?limite=5&api_key=EAX0bR2KdabAnaoTNRxGQCMUk8NwCFod`,
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
     const res = await axios(config);
      return res

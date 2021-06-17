@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CitationsProvider } from 'store/citations';
 import { URL } from './constantes'
 
 const Api = {
@@ -29,6 +30,19 @@ const Api = {
     }
     
   },
+
+  fetchSearchCitations : async (word) => {
+    const config = {
+      method: 'get',
+      url: `${URL}api/citation/${word}`
+    }
+    try{
+      const citations = await axios(config)
+      return citations
+    } catch(err) {
+      console.log(err)
+    }
+  }
 }
 
 export default Api;
