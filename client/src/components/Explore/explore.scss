@@ -2,7 +2,7 @@
 
 
 .explore__container {
-  width:90vw;
+  width:98vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,7 +10,6 @@
   ::-webkit-scrollbar {
     display: none;
   }
-  overflow-x: scroll;
 }
 
 .explore__h1 {
@@ -19,14 +18,15 @@
 }
 
 .explore__bloc__citations {
-  width: 100%;
+  width: 98%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background: yellow; 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   } 
   overflow-x: scroll;
+  position: relative;
+
 }
