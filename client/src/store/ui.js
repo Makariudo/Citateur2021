@@ -2,9 +2,7 @@ import React, { useState, createContext, useMemo } from 'react'
 
 const storeInit = {
   isLoading: false,
-  input: "",
   toggleIsLoading: () => {},
-  setInput: () => {},
 };
 
 const UIContext = createContext();
@@ -13,15 +11,21 @@ const UIContext = createContext();
 
 export const UIProvider = (props) => {
   const toggleIsLoading = () => {
-    setState({...state, isLoading: !state.isLoading})
+    if(state.isLoading){
+      console.log("isLoading vaut:", state);
+      setState({...state, isLoading: false});
+      console.log("isLoading vaut après setstate:", state);
+    } else {
+      console.log("isLoading vaut:", state);
+      setState({...state, isLoading: true});
+      console.log("isLoading vaut après setstate:", state);
+    }
+   
   };
 
-  const setInput = (input) => {
-    setState({...state, input: input})
-  }
-  const initState = {...storeInit, toggleIsLoading, setInput }
+  const initState = {...storeInit, toggleIsLoading};
   const [state, setState] = useState(initState);
-  const value = useMemo(() => state, [state] )
+  const value = useMemo(() => state, [state] );
   return(
     <UIContext.Provider value={value}>
       {props.children}

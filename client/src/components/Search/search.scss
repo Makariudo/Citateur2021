@@ -3,7 +3,7 @@
 .searchBar {
   margin: 10*$gutter auto; 
   width: clamp(320px,450px, 80vw);
-  
+  position: relative;
 }
 
 .searchBar__title {
@@ -20,8 +20,7 @@
   justify-content: center;
   align-items: center;
   padding: $gutter;
-  background: rgb(49,49,49);
-  background: linear-gradient(0deg, rgba(49,49,49,1) 0%, rgba(168,139,79,1) 10%, rgba(193,159,88,1) 15%, rgba(193,159,88,1) 49%, rgba(193,159,88,1) 85%, rgba(168,139,79,1) 90%, rgba(49,49,49,1) 100%);
+  background: $primary;
   border-radius: 3rem;
 
 }
@@ -99,6 +98,7 @@
   display: block;
   color: $white;
   padding-top: $gutter;
+  padding-bottom: $gutter;
   text-align: center;
   animation: coming 0.5s;
   animation-timing-function: ease-in-out;
@@ -108,6 +108,27 @@
   animation: gone 0.5s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  }
+
+ .searchBar__notif__container{
+    width: 60%;
+    margin: 0 auto;
+    background: #1f1f1f;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: 1px solid $primary;
+    position: relative;
+    z-index: -1;
+    top: 0px;
+    /* animation: comingContainer 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;  */
+    .hidden{
+      top: -40px;
+      /* animation: comingContainerGone 0.5s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;  */
+      }
   }
 
 /* ANNIMATION*/
@@ -124,6 +145,16 @@
   }
 }
 
+@keyframes comingContainer {
+  0% {
+    top: -0px;
+
+  }
+  100% {
+    top: -40px;
+  }
+}
+
 @keyframes gone {
   0% {
     opacity: 1;
@@ -133,6 +164,16 @@
   100% {
     opacity: 0;
     filter: blur(2px);
+  }
+}
+
+@keyframes comingContainerGone {
+  0% {
+    top: -40px;
+
+  }
+  100% {
+    top: 0px;
   }
 }
 

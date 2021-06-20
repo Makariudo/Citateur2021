@@ -1,42 +1,57 @@
 import React, {useState, useContext, useRef, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Api from 'utils/fetch';
 import CitationsContext from 'store/citations';
 import UIContext from 'store/ui';
+import Notifications from './Notifications';
 import './search.scss';
-import loupe from 'assets/loupe.png';
-
 
 const placeholder="Entrez le mot de votre choix pour obtenir une citation...";
 
 function Search() {
  const history = useHistory();
+ const {mot} = useParams();
  const inputRef = useRef()
+ const [input, setInput] = useState("");
  const {setCitations} = useContext(CitationsContext);
- const {input, setInput} = useContext(UIContext)
- const [note, setNote] = useState(false)
+ const {isLoading, toggleIsLoading} = useContext(UIContext)
+ const [notif, setNotif] = useState(false)
 
  useEffect(()=> {
   inputRef.current.focus();
- },[note])
+ },[notif])
 
   const handleSearch = async () => {
+    console.log("ava,t le premier toggle", isLoading)
+    toggleIsLoading()
+    console.log("après le premier toggle", isLoading)
+
     if(input.length <= 4){
       return;
     }
     const citations = await Api.fetchSearchCitations(input);
     if(citations.data.error){
-      setNote(true);
+      console.log("ava,t le premier toggle error", isLoading)
+
+      toggleIsLoading()
+      console.log("après le premier toggle error", isLoading)
+
+      setNotif(true);
       return;
     }
-    let path = `/explore`; 
-    history.push(path);
+    let path = `/explore/${input}`; 
     console.log("citations:", citations)
     setCitations(citations.data)
+    console.log("ava,nt le deuxieme toggle isloading", isLoading)
+
+    toggleIsLoading();
+    console.log("après le toggle juste ava,nt le push path", isLoading)
+
+    history.push(path);
   };
 
   const handleChange = (e) => {
-    setNote(false)
+    setNotif(false)
     setInput(e.target.value)
   } 
 
@@ -53,10 +68,12 @@ function Search() {
           onChange={handleChange}
           ref={inputRef}
           />
-        {/*<img className="loupe" src={loupe} onClick={handleSearch} alt="search"/>*/}
         <div className="loupe_try" onClick={handleSearch}> </div>
       </div>
-      <span className={note ? "searchBar__notif":"searchBar__notif hidden"}>Citations introuvable avec ce mot !</span>
+      <Notifications show={isLoading} message={"...search..."}/>
+      {notif && <Notifications show message={"pas de résultats"}/>
+}
+
     </div>
   )
 }

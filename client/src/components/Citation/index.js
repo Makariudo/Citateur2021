@@ -13,7 +13,7 @@ function Citation({citation}) {
               <p className="citation__text">{subQuotes(citation.citation)}</p>
               <div className="citation__author">
                 <p className="citation__author__name">{citation.auteur}</p>
-                <img className="citation__author__img"src={citation.image} alt="auhor" />
+                {citation.image && <img className="citation__author__img"src={citation.image} alt="auhor" />}              
               </div>
               <img src={quoteStart} className="quotes__end" alt="quote"/>   
         </article>
