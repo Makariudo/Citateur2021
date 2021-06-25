@@ -13,7 +13,7 @@ function Header() {
       {isConnected
       ? ( <>
           <h2 className="header__h2"><Link className="header__link" to="/Dashboard"> Vos Citations </Link></h2>
-          <h2 className="header__h2"> Logged !</h2>
+          <h2 className="header__h2 sign"> Logged !</h2>
           </>)
       : (<>
           <h2 className="header__h2"><Link className="header__link" to="/Dashboard"> Vos Citations </Link></h2>
