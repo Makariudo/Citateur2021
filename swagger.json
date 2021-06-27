@@ -1,0 +1,293 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0", 
+    "title": "Citateur 2021",
+    "description": "Citateur Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+    "paths": {
+      "/api/citation": {
+        "get": {
+          "tags": ["Citation"],
+          "summary": "Get One example citation",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/apiCitation"
+              }
+            }
+          }
+        }
+      },
+      "/api/citation/:word":{
+        "get":{
+          "parameters": [
+            {
+              "name": "word",
+              "description": "word user wanted to be included in citations results",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ],
+          "tags":["Citations search"],
+          "summary":"Get  5 citations via dicolink includes/about word in params",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                  "$ref": "#definitions/apiCitations"
+              }
+            }
+          }
+        }
+      },
+      "/auth":{
+        "get":{
+          "tags":["Index de Auth"],
+          "summary":"Nothing now...",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/auth/google":{
+        "get":{
+          "tags":["Google oAuth"],
+          "summary":"Get googleID oAuth 2.0",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                  "$ref": "#definitions/googleID"
+              }
+            }
+          }
+        }
+      },
+      "/auth/google/callback":{
+        "get":{
+          "tags":["Google oAuth callback"],
+          "summary":"Get googleID oAuth 2.0 callaback url",
+          "responses": {
+            "200": {
+              "description": "Redirect to client dashboard"
+            }
+          }
+        }
+      },
+      "/auth/logged":{
+        "get":{
+          "tags":["Logged"],
+          "summary":"Ask if user is logged",
+          "responses": {
+            "200": {
+              "description": "Return true or false"
+            }
+          }
+        }
+      },
+      "/auth/current_user":{
+        "get":{
+          "tags":["Current user"],
+          "summary":"Get current user object",
+          "responses": {
+            "200": {
+              "description": "Return user object",
+              "schema": {
+                "$ref": "#definitions/user"
+              }
+            }
+          }
+        }
+      },
+      "/auth/logout":{
+        "get":{
+          "tags":["Logout"],
+          "summary":"logout current user",
+          "responses": {
+            "200": {
+              "description": "Log out user express session"
+            }
+          }
+        }
+      },
+      "/citations":{
+        "get":{
+          "tags":["citations"],
+          "summary":"get user's citation",
+          "responses": {
+            "200": {
+              "description": "ok",
+              "schema": {
+                "$ref": "#definitions/citations"
+              }
+            }
+          }
+        },
+        "post":{
+          "tags":["citation"],
+          "summary":"get user's citation",
+          "responses": {
+            "200": {
+              "description": "Citation sauvegardée !, vous avez x citations",
+              "schema": {
+                "$ref": "#definitions/citation"
+              }
+            }
+          }
+        }
+      },
+      "/citations/:id":{
+        "delete":{
+          "parameters": [
+            {
+              "name": "id",
+              "description": "ID of citation",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ],
+          "tags":["Delete one Citation"],
+          "summary":"Delete citation in params",
+          "responses": {
+            "200": {
+              "description": "..."
+            }
+          }
+        },
+        "patch":{
+          "parameters": [
+            {
+              "name": "id",
+              "description": "ID of citation",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ],
+          "tags":["Update one Citation"],
+          "summary":"update citation in params",
+          "responses": {
+            "200": {
+              "description": "Ok"
+            }
+          }
+        }
+
+      }
+    },
+    "definitions":{
+      "apiCitation": {
+        "type":"object",
+        "properties":{
+          "citation": {
+            "type" :"string"
+          },
+          "auteur":{
+            "type": "string"
+          },
+          "image":{
+            "type": "string"
+          }
+        }
+      },
+      "apiCitations": {
+        "type":"object",
+        "description": "Array of citation",
+        "properties":{
+          "citation": {
+            "type" :"string"
+          },
+          "auteur":{
+            "type": "string"
+          },
+          "image":{
+            "type": "string"
+          }
+        }
+      },
+      "googleID": {
+        "type":"object",
+        "description": "Google id",
+        "properties":{
+          "profile": {
+            "type" :"object"
+          },
+          "email":{
+            "type": "string"
+          }
+        }
+      },
+      "user": {
+        "type":"object",
+        "description": " User object stored in express session",
+        "properties":{
+          "googleId": {
+            "type" :"string"
+          },
+          "lastName":{
+            "type": "string"
+          },
+          "firstName":{
+            "type": "string"
+          },
+          "photoURL":{
+            "type": "string"
+          },
+          "email":{
+            "type": "string"
+          }
+        }
+      },
+      "citations": {
+        "type":"object",
+        "description": "Array of citation",
+        "properties":{
+          "citation": {
+            "type" :"string"
+          },
+          "auteur":{
+            "type": "string"
+          },
+          "image":{
+            "type": "string"
+          },
+          "category":{
+            "type": "string"
+          }
+        }
+      },
+      "citation": {
+        "type":"object",
+        "description": "citation mongoose schema",
+        "properties":{
+          "citation": {
+            "type" :"string"
+          },
+          "auteur":{
+            "type": "string"
+          },
+          "image":{
+            "type": "string"
+          },
+          "category":{
+            "type": "string"
+          }
+        }
+      }
+  }
+}

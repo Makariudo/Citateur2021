@@ -2,7 +2,6 @@ import React, {useState, useContext, useRef, useEffect} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Api from 'utils/fetch';
 import CitationsContext from 'store/citations';
-import UIContext from 'store/ui';
 import Notifications from './Notifications';
 import './search.scss';
 

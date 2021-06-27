@@ -26,8 +26,8 @@ const citationsController = {
     } else {
     const citation = await new Citation({
       citation: req.body.citation,
-      author: req.body.author,
-      authorImg: req.body.authorImg,
+      auteur: req.body.auteur,
+      image: req.body.image,
       category: req.body.category,
     }).save();
     //console.log("citation", citation)
