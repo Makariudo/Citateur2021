@@ -10,9 +10,7 @@ require('./models/Citation');
 require('./config/passport');
 const router = require("./routes");
 
-const corsOptions = {
-  origin: process.env.CORS_ORIGIN
-}
+
 
 const app = express();
 
@@ -27,8 +25,9 @@ const swaggerUi = require('swagger-ui-express'), swaggerDocument = require('./sw
 
 app.use(passport.initialize());
 app.use(passport.session())  // lui dit qu'il peut utiliser les cookies session
-app.use(cors(corsOptions));
+
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve('../client/build')));

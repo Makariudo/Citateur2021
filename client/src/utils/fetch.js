@@ -42,6 +42,30 @@ const Api = {
     } catch(err) {
       console.log(err)
     }
+  },
+  addCitation : async (citationToAdd) => {
+    const {citation, auteur, image} = citationToAdd;
+    const config = {
+      method: 'post',
+      url: `${URL}citations`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+        'Access-Control-Allow-Credentials':'true'
+      },
+      withCredentials: true,
+      data : {
+        citation,
+        auteur,
+        image
+      }
+    }
+    try{
+      const response = await axios(config)
+      console.log(response)
+    } catch(err) {
+      console.log(err)
+    }
   }
 }
 

@@ -1,0 +1,75 @@
+@import 'style/vars';
+
+.snackbar__container {
+  position: absolute;
+  right: -500px;
+  top: 10%;
+  background-color: $secondary;
+  height: 6%;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 3px 13px 0px rgba(0,0,0,0.75);
+  
+}
+
+.disappear{
+  animation: snackDisappear 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.appear {
+  animation: snackComing 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.info{
+  background-color: $secondary;
+
+}
+.error {
+  background-color: red;
+}
+
+.success {
+  background-color: green;
+}
+
+.snackbar__message {
+  color: $white;
+  padding: 0 2*$gutter 0 2*$gutter;
+}
+
+@keyframes snackComing {
+  0% {
+    right: -500px;
+    //opacity: 0.1;
+    //filter: blur(5px);
+
+  }
+  100% {
+    right: 5%;
+    //opacity: 1;
+    //filter: blur(0);
+
+  }
+}
+
+
+@keyframes snackDisappear {
+  0% {
+    right: 5%;
+    opacity: 1;
+    filter: blur(0);
+
+  }
+  100% {
+    right: -500px;
+    opacity: 0.2;
+    filter: blur(5px);
+
+  }
+}

@@ -138,8 +138,19 @@
           }
         },
         "post":{
+          "parameters": [
+            {
+              "name": "citation",
+              "description": "citation object",
+              "required": true,
+              "schema": {
+                "$ref": "#definitions/citation"
+              },
+              "paramType": "app/json"
+            }
+          ],
           "tags":["citation"],
-          "summary":"get user's citation",
+          "summary":"post one citation",
           "responses": {
             "200": {
               "description": "Citation sauvegardée !, vous avez x citations",

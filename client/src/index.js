@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {CitationsProvider} from "store/citations";
 import {AuthProvider} from "store/auth"
 import {UIProvider} from 'store/ui'
+import { SnackProvider } from 'store/snack';
 
 
 import 'style/index.scss';
@@ -13,9 +14,11 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <CitationsProvider>
-        <UIProvider>
-         <App /> 
-        </UIProvider>
+        <SnackProvider>
+          <UIProvider>
+            <App /> 
+          </UIProvider>
+        </SnackProvider>
       </CitationsProvider>
     </AuthProvider>
   </React.StrictMode>,

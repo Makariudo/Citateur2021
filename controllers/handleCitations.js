@@ -32,6 +32,7 @@ const citationsController = {
     }).save();
     //console.log("citation", citation)
     //console.log("citationID", citation._id)
+    console.log("req user de la demande:", req.user)
     const user = await User.findOne({ googleId : req.user.googleId });
     const cits = await user.addCitation(citation._id);
     res.send(`Citation sauvegardée !, vous avez ${cits} citations"`);

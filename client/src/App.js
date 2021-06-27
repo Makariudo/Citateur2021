@@ -2,6 +2,7 @@ import {useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Auth from "store/auth";
 import Api from 'utils/fetch';
+import Snackbar from 'components/Snackbar'
 import Example from 'components/Example';
 import Explore from 'components/Explore';
 import DashBoard from 'components/Dashboard';
@@ -26,6 +27,7 @@ function App() {
   return (
       <main>
         <Router>
+          <Snackbar />
           <Header/>
           <Search />
           <Switch>

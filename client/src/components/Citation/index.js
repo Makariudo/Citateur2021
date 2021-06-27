@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
+import API from "utils/fetch";
+import Snack from 'store/snack';
 import './citation.scss';
 import quoteStart from 'assets/ouvrantes_shadow_white.svg';
 import plus from 'assets/plus_citateur.svg';
@@ -6,8 +8,24 @@ import quoteEnd from 'assets/fermantes_shadow_white.svg';
 import {subQuotes} from 'utils/getSearchAndReturn';
 
 function Citation({citation}) {
-  const handleClick = () => {
-    console.log("add ", citation)
+  const [add, setAdd] = useState(false)
+  const {setSnack} = useContext(Snack)
+  const handleClick = async () => {
+    setAdd(true);
+    try {
+     const reponse = await API.addCitation(citation); 
+     console.log(reponse)
+    }catch(err){
+      console.log(err)
+    }
+    
+  }
+
+  const handleTest = () => {
+      setSnack({
+        type: "info",
+        message: "Coucou de citation!",
+      })
   }
   return (
     <div>
@@ -17,10 +35,11 @@ function Citation({citation}) {
               <div className="citation__author">
                 <p className="citation__author__name">{citation.auteur}</p>
                 {citation.image && <img className="citation__author__img"src={citation.image} alt="auhor" />} 
-                <img src={plus} className="citation__plus" alt="add citation" onClick={handleClick}/>         
+                {!add && <img src={plus} className="citation__plus" alt="add citation" onClick={handleClick}/>}        
               </div>
               <img src={quoteStart} className="quotes__end" alt="quote"/>   
         </article>
+        <button onClick={handleTest}>Test snack</button>
     </div>
   )
 }

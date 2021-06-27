@@ -17,7 +17,7 @@ function Header() {
           </>)
       : (<>
           <h2 className="header__h2"><Link className="header__link" to="/Dashboard"> Vos Citations </Link></h2>
-          <h2 className="header__h2 sign" ><a className="header__link" href={`${URL}auth/google`}> Sign in With Google </a></h2>
+          <h2 className="header__h2 sign" ><a className="header__link" href={`${URL}auth/google`}> Log in With Google </a></h2>
         </>)
     }
       
