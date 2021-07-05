@@ -62,7 +62,7 @@ const Api = {
     }
     try{
       const response = await axios(config)
-      console.log(response)
+     return response;
     } catch(err) {
       console.log(err)
     }

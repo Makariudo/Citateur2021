@@ -7,26 +7,27 @@ import plus from 'assets/plus_citateur.svg';
 import quoteEnd from 'assets/fermantes_shadow_white.svg';
 import {subQuotes} from 'utils/getSearchAndReturn';
 
+
 function Citation({citation}) {
   const [add, setAdd] = useState(false)
   const {setSnack} = useContext(Snack)
+  
   const handleClick = async () => {
     setAdd(true);
     try {
      const reponse = await API.addCitation(citation); 
-     console.log(reponse)
+     if(reponse.status===200){
+      setSnack({
+        type:"info",
+        message:"Citation ajoutée !"
+      })
+     }
     }catch(err){
       console.log(err)
     }
-    
   }
 
-  const handleTest = () => {
-      setSnack({
-        type: "info",
-        message: "Coucou de citation!",
-      })
-  }
+
   return (
     <div>
        <article className="container__citation__article">
@@ -39,7 +40,6 @@ function Citation({citation}) {
               </div>
               <img src={quoteStart} className="quotes__end" alt="quote"/>   
         </article>
-        <button onClick={handleTest}>Test snack</button>
     </div>
   )
 }
